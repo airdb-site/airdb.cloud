@@ -9,6 +9,4 @@
 
 ## 结构
 
-- `index.html` — 首页
-- `css/style.css` — 样式
-- `js/main.js` — 交互脚本（移动端导航等）
+- `docs/product-positioning.md` — 产品定位与设计文档（当前阶段核心产出，前端代码暂未开发）
