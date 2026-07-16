@@ -1,0 +1,1528 @@
+---
+import "../styles/global.css";
+
+const SITE = "https://airdb.cloud";
+const TITLE = "AirDB Cloud — 不用懂云，也能用好云";
+const DESC =
+  "AirDB Cloud 把阿里云、腾讯云、AWS 等专业云平台的能力，封装成普通人能直接用的服务。选场景、一键开通、看健康度——只有三步，没有第四步。产品筹备中。";
+
+// 演示面板 · 第 3 步的健康度刻度条（30 天，纯演示数据）
+const upticks = Array.from({ length: 30 });
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE}/#org`,
+      name: "AirDB Cloud",
+      url: SITE,
+      logo: `${SITE}/favicon.svg`,
+      description:
+        "面向普通用户的云服务产品化平台：把主流云厂商的底层能力封装成开箱即用的服务。",
+      email: "info@airdb.com",
+      parentOrganization: {
+        "@type": "Organization",
+        name: "AIRDB",
+        url: "https://airdb.com",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      url: SITE,
+      name: "AirDB Cloud",
+      inLanguage: "zh-CN",
+      publisher: { "@id": `${SITE}/#org` },
+    },
+  ],
+});
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{TITLE}</title>
+    <meta name="description" content={DESC} />
+    <link rel="canonical" href={`${SITE}/`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#f7f9fb" />
+    <link
+      rel="preload"
+      href="/fonts/bricolage-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/ibm-plex-mono-400-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AirDB Cloud" />
+    <meta property="og:title" content={TITLE} />
+    <meta property="og:description" content={DESC} />
+    <meta property="og:url" content={`${SITE}/`} />
+    <meta property="og:image" content={`${SITE}/images/og-card.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="AirDB Cloud — 不用懂云，也能用好云"
+    />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={TITLE} />
+    <meta name="twitter:description" content={DESC} />
+    <meta name="twitter:image" content={`${SITE}/images/og-card.png`} />
+
+    <script type="application/ld+json" set:html={jsonLd} />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+
+    <header class="site-head">
+      <div class="wrap head-inner">
+        <a class="brand" href="/">
+          <svg
+            class="brand-mark"
+            viewBox="0 0 64 64"
+            width="30"
+            height="30"
+            aria-hidden="true"
+          >
+            <path
+              d="M20 44a9 9 0 0 1-1.2-17.92A13 13 0 0 1 44 22.5 10.5 10.5 0 0 1 45 44Z"
+              fill="var(--sky)"></path>
+            <circle cx="45" cy="44" r="7" fill="var(--paper)"></circle>
+            <circle cx="45" cy="44" r="4.5" fill="var(--leaf-bright)"></circle>
+          </svg>
+          <span class="brand-name">AirDB <em>Cloud</em></span>
+        </a>
+
+        <details class="nav-fold" open>
+          <summary aria-label="打开菜单">
+            <span class="nav-burger" aria-hidden="true"></span>菜单
+          </summary>
+          <nav aria-label="站内导航">
+            <a href="#how">它怎么用</a>
+            <a href="#scenarios">你的场景</a>
+            <a href="#trust">凭什么放心</a>
+            <a href="#pricing">价格</a>
+            <a class="nav-mail" href="mailto:info@airdb.com">联系我们</a>
+          </nav>
+        </details>
+
+        <span class="phase-badge mono" title="产品尚未上线，本站为筹备期官网"
+          >PREVIEW · 筹备中</span
+        >
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 首屏：一句话 + 产品演示 ============ -->
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow mono">AIRDB CLOUD</p>
+            <h1>不用懂云，<br />也能用好云。</h1>
+            <p class="lede">
+              阿里云、腾讯云、AWS
+              很强大，但它们是为工程师造的。我们把这些专业能力封装成你能直接用的服务——你只说要办成什么事，剩下的是我们的工作。
+            </p>
+            <div class="hero-cta">
+              <a
+                class="btn btn-primary"
+                href="mailto:info@airdb.com?subject=%E6%88%91%E6%83%B3%E8%81%8A%E8%81%8A%E6%88%91%E7%9A%84%E5%9C%BA%E6%99%AF"
+                >和我们聊聊你的场景</a
+              >
+              <a class="btn btn-ghost" href="#scenarios">先看看能办哪些事 ↓</a>
+            </div>
+            <p class="hero-note">
+              产品筹备中。这个网站上没有"立即购买"，也不会在上线前出现。
+            </p>
+          </div>
+
+          <!-- 演示面板：官网不罗列功能，直接演示"三步" -->
+          <aside class="demo-wrap" aria-label="产品流程演示（非真实控制台）">
+            <div class="demo" id="demo">
+              <div class="demo-chrome">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="demo-url mono">console.airdb.cloud · 演示</span>
+              </div>
+
+              <div class="demo-tabs" role="tablist" aria-label="三个步骤">
+                <button
+                  role="tab"
+                  id="tab-1"
+                  aria-selected="true"
+                  aria-controls="panel-1"
+                  class="demo-tab is-on"
+                >
+                  <span class="step-no mono">1</span>选场景
+                </button>
+                <button
+                  role="tab"
+                  id="tab-2"
+                  aria-selected="false"
+                  aria-controls="panel-2"
+                  class="demo-tab"
+                  tabindex="-1"
+                >
+                  <span class="step-no mono">2</span>一键开通
+                </button>
+                <button
+                  role="tab"
+                  id="tab-3"
+                  aria-selected="false"
+                  aria-controls="panel-3"
+                  class="demo-tab"
+                  tabindex="-1"
+                >
+                  <span class="step-no mono">3</span>看健康度
+                </button>
+              </div>
+
+              <!-- 第 1 步：选场景 -->
+              <div
+                class="demo-panel is-on"
+                id="panel-1"
+                role="tabpanel"
+                aria-labelledby="tab-1"
+              >
+                <p class="panel-q">今天要办什么事？</p>
+                <ul class="pick-list">
+                  <li class="pick is-picked">
+                    <span class="pick-radio" aria-hidden="true"></span>
+                    <span class="pick-label"
+                      >我要一个官网<small>域名、证书、加速全包</small></span
+                    >
+                  </li>
+                  <li class="pick">
+                    <span class="pick-radio" aria-hidden="true"></span>
+                    <span class="pick-label"
+                      >我要一个数据库<small>自动备份，会提前预警</small></span
+                    >
+                  </li>
+                  <li class="pick">
+                    <span class="pick-radio" aria-hidden="true"></span>
+                    <span class="pick-label"
+                      >我要存文件和图片<small>传上来就能加速分发</small></span
+                    >
+                  </li>
+                </ul>
+                <p class="panel-next"><span class="faux-btn">开通 →</span></p>
+              </div>
+
+              <!-- 第 2 步：一键开通 -->
+              <div
+                class="demo-panel"
+                id="panel-2"
+                role="tabpanel"
+                aria-labelledby="tab-2"
+                hidden
+              >
+                <p class="panel-q">正在为你搭建「官网」…</p>
+                <ul class="prov-list mono">
+                  <li style="--i: 0">✓ 云端资源已就绪<i>厂商与地域由系统决定</i></li>
+                  <li style="--i: 1">✓ HTTPS 证书已配置<i>以后自动续期</i></li>
+                  <li style="--i: 2">✓ 访问加速已接入</li>
+                  <li style="--i: 3">✓ 自动备份已开启<i>每天一次</i></li>
+                </ul>
+                <div class="prov-bar" aria-hidden="true"><span></span></div>
+                <p class="prov-done mono">● 上线完成 · 全程 58 秒（演示数据）</p>
+              </div>
+
+              <!-- 第 3 步：看健康度 -->
+              <div
+                class="demo-panel"
+                id="panel-3"
+                role="tabpanel"
+                aria-labelledby="tab-3"
+                hidden
+              >
+                <div class="health-top">
+                  <span class="health-dot" aria-hidden="true"></span>
+                  <span class="health-word">运行正常</span>
+                  <span class="health-days mono">最近 30 天 · 演示</span>
+                </div>
+                <div class="uptime" aria-hidden="true">
+                  {upticks.map(() => <i />)}
+                </div>
+                <ul class="health-rows">
+                  <li><span>自动备份</span><b class="ok">今天 04:12 已完成</b></li>
+                  <li><span>安全证书</span><b class="ok">有效 · 自动续期</b></li>
+                  <li><span>访问加速</span><b class="ok">已开启</b></li>
+                </ul>
+                <p class="health-note">出现异常时，我们先于你知道，并开始处理。</p>
+              </div>
+            </div>
+            <p class="demo-caption">
+              演示画面，不是真实控制台——产品还在打磨中，但它上线时就该这么简单。
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ 三步 ============ -->
+      <section class="how" id="how">
+        <div class="wrap">
+          <h2>只有三步，<span class="accent">没有第四步。</span></h2>
+          <p class="sec-lede">
+            无论是官网、数据库还是云存储，用法完全一样。学会一次，等于学会全部。
+          </p>
+          <ol class="steps">
+            <li>
+              <span class="step-big mono">01</span>
+              <h3>选场景</h3>
+              <p>用你的话描述要办的事，比如"我要一个官网"。不需要认识任何专业名词。</p>
+            </li>
+            <li>
+              <span class="step-big mono">02</span>
+              <h3>一键开通</h3>
+              <p>服务器、证书、备份、加速——系统替你决定、替你搭好。你等的是结果，不是教程。</p>
+            </li>
+            <li>
+              <span class="step-big mono">03</span>
+              <h3>看健康度</h3>
+              <p>打开就一个绿点。不是绿的时候，警报先到我们这里，处理也从我们这里开始。</p>
+            </li>
+          </ol>
+          <p class="how-note">
+            地域选哪里、买什么规格、用哪家云厂商——这些问题不会出现。<br
+              class="wide-only"
+            />它们是我们的工作，不是你的。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 场景 ============ -->
+      <section class="scenarios" id="scenarios">
+        <div class="wrap">
+          <h2>从你要办的事出发</h2>
+          <p class="sec-lede">
+            我们不卖"2 核 4G 服务器"这种东西。你带着事来，我们负责办成、并且一直好好运行。
+          </p>
+
+          <div class="scene-grid">
+            <article class="scene">
+              <p class="scene-say">“我要一个官网。”</p>
+              <h3>建站托管</h3>
+              <p>
+                选好样式就上线：域名、HTTPS 证书、访问加速全部自动配好。改内容像编辑文档一样。
+              </p>
+            </article>
+
+            <article class="scene">
+              <p class="scene-say">“我的应用要个数据库。”</p>
+              <h3>托管数据库</h3>
+              <p>
+                一键创建，自动备份。快满了、变慢了，会提前告诉你，而不是等它出事。
+              </p>
+              <p class="scene-plus mono">＋ 可加开关：上传文档即可问答的 AI 能力</p>
+            </article>
+
+            <article class="scene">
+              <p class="scene-say">“我要存文件、图片和视频。”</p>
+              <h3>云存储</h3>
+              <p>
+                传上来就能分发加速。每天自动备份，支持一键恢复——误删时的后悔药。
+              </p>
+            </article>
+
+            <article class="scene">
+              <p class="scene-say">“域名、证书这些我搞不懂。”</p>
+              <h3>域名与安全</h3>
+              <p>
+                注册、解析、证书续期全自动，附带基础攻击防护。到期前我们会盯着，不用你记。
+              </p>
+            </article>
+
+            <article class="scene">
+              <p class="scene-say">“出了问题，得有人管。”</p>
+              <h3>托管运维</h3>
+              <p>
+                7×24 监控。你看到的是一个绿点，我们看到的是背后的几十项指标。
+              </p>
+              <p class="scene-plus mono">内嵌在上面每个服务里，不单独卖</p>
+            </article>
+
+            <article class="scene scene-ask">
+              <p class="scene-say">“我的场景不在这里。”</p>
+              <h3>那就写信告诉我们</h3>
+              <p>
+                第一批产品先做什么，由这些来信决定。<br />
+                <a href="mailto:info@airdb.com?subject=%E6%88%91%E7%9A%84%E5%9C%BA%E6%99%AF"
+                  >info@airdb.com</a
+                >
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 保障 ============ -->
+      <section class="trust" id="trust">
+        <div class="wrap">
+          <h2>凭什么放心交给我们</h2>
+          <p class="sec-lede">
+            比"功能多"更重要的，是出了事怎么办。这四条是我们打算写进服务协议的东西。
+          </p>
+
+          <div class="trust-grid">
+            <article>
+              <h3>一个责任方</h3>
+              <p>
+                出问题不用你分辨是谁的锅。无论底层是哪家云厂商，你只需要找我们，我们兜底。
+              </p>
+            </article>
+            <article>
+              <h3>自动备份</h3>
+              <p>
+                所有带数据的服务默认定期备份、支持一键恢复，保留周期写明白、可查证。
+              </p>
+            </article>
+            <article>
+              <h3>公开状态页</h3>
+              <p>
+                服务状态、历史故障与处理记录公开可查。上线第一天就有，不用等出事才建。
+              </p>
+            </article>
+            <article>
+              <h3>在线率目标 <span class="mono">99.9%</span><sup>*</sup></h3>
+              <p>
+                关键服务多副本部署、故障自动切换；不达标有补偿机制。
+              </p>
+            </article>
+          </div>
+
+          <p class="trust-fine">
+            * 筹备期目标值。正式的在线率、备份周期与响应时限，会以具体数字写进上线时的服务协议——只会更具体，不会更含糊。
+          </p>
+
+          <div class="versus">
+            <h3 class="versus-title">同一件事，两种过法</h3>
+            <div class="versus-table" role="table" aria-label="自己上云与交给 AirDB 的对比">
+              <div class="vs-row vs-head" role="row">
+                <span role="columnheader">&nbsp;</span>
+                <span role="columnheader">自己注册云厂商</span>
+                <span role="columnheader" class="vs-us">交给 AirDB Cloud</span>
+              </div>
+              <div class="vs-row" role="row">
+                <span role="rowheader">你买的是</span>
+                <span role="cell">实例规格、存储桶、带宽包……</span>
+                <span role="cell" class="vs-us">"官网托管"这类办成的事</span>
+              </div>
+              <div class="vs-row" role="row">
+                <span role="rowheader">要学的东西</span>
+                <span role="cell">控制台、安全组、专业术语</span>
+                <span role="cell" class="vs-us">没有，会打字就行</span>
+              </div>
+              <div class="vs-row" role="row">
+                <span role="rowheader">半夜挂了</span>
+                <span role="cell">自己排查，自己提工单</span>
+                <span role="cell" class="vs-us">我们先收到警报，先处理</span>
+              </div>
+              <div class="vs-row" role="row">
+                <span role="rowheader">备份</span>
+                <span role="cell">记得配就有，忘了就没有</span>
+                <span role="cell" class="vs-us">默认就有，还能一键恢复</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 价格 ============ -->
+      <section class="pricing" id="pricing">
+        <div class="wrap">
+          <h2>价格还没有，<span class="accent">原则先有。</span></h2>
+          <ul class="price-rules">
+            <li>
+              <b>套餐订阅制。</b>按场景打包，价格一眼看懂，不需要计算器，也不需要理解"按量计费"是什么。
+            </li>
+            <li>
+              <b>超出套餐按用量补差。</b>不设隐形收费；快超额时提前提醒，而不是账单吓人。
+            </li>
+            <li>
+              <b>AI 等能力是套餐里的加购开关，</b>不是另一套复杂价目表。
+            </li>
+          </ul>
+          <p class="price-honest">
+            定价会和首批产品一起公布。公布之前，我们不收任何钱——这个页面上也不会出现"立即购买"按钮。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 现状 ============ -->
+      <section class="now" id="now">
+        <div class="wrap">
+          <h2>现在做到哪一步了</h2>
+          <ol class="timeline">
+            <li class="done">
+              <span class="tl-mark mono">✓</span>
+              <div>
+                <h3>定位与产品设计 <span class="tl-date mono">2026-07</span></h3>
+                <p>方向已定：建站托管与托管数据库先行，AI 作为内嵌开关，不做功能堆砌。</p>
+              </div>
+            </li>
+            <li class="doing">
+              <span class="tl-mark mono">●</span>
+              <div>
+                <h3>产品打磨中</h3>
+                <p>
+                  首批接入 1–2 家云厂商，先做少数场景——做到敢兜底，再开放。
+                </p>
+              </div>
+            </li>
+            <li class="todo">
+              <span class="tl-mark mono">○</span>
+              <div>
+                <h3>首批体验名额</h3>
+                <p>
+                  开放时通过邮件通知。现在就想聊，写信：<a
+                    href="mailto:info@airdb.com?subject=%E9%A6%96%E6%89%B9%E4%BD%93%E9%AA%8C"
+                    >info@airdb.com</a
+                  >
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <div class="wrap foot-grid">
+        <div class="foot-brand">
+          <p class="brand-name">AirDB <em>Cloud</em></p>
+          <p class="foot-line">不用懂云，也能用好云。</p>
+          <p class="foot-mail mono">
+            <a href="mailto:info@airdb.com">info@airdb.com</a>
+          </p>
+        </div>
+        <nav class="foot-eco" aria-label="AIRDB 生态">
+          <h3 class="mono">AIRDB 生态</h3>
+          <a href="https://airdb.com" rel="noopener">airdb.com · 主站</a>
+          <a href="https://airdb.group" rel="noopener">airdb.group · 集团</a>
+          <a href="https://airdb.tech" rel="noopener">airdb.tech · 技术研究</a>
+          <a href="https://airdb.team" rel="noopener">airdb.team · 团队</a>
+          <a href="https://airdb.fund" rel="noopener">airdb.fund · 公益</a>
+        </nav>
+      </div>
+      <div class="wrap foot-base">
+        <p class="mono">© 2026 AirDB Cloud · 产品筹备中 · 本站不含任何付费入口</p>
+      </div>
+    </footer>
+
+    <script>
+      // 移动端导航：<details> 默认 open（桌面端 summary 隐藏、始终展开），
+      // 窄屏时收起为汉堡菜单，点击链接后自动合上。
+      const fold = document.querySelector<HTMLDetailsElement>(".nav-fold");
+      if (fold) {
+        const narrow = window.matchMedia("(max-width: 640px)");
+        const sync = () => {
+          fold.open = !narrow.matches;
+        };
+        sync();
+        narrow.addEventListener("change", sync);
+        fold.querySelectorAll("nav a").forEach((a) =>
+          a.addEventListener("click", () => {
+            if (narrow.matches) fold.open = false;
+          }),
+        );
+      }
+
+      // 演示面板：手动切换 + 可见时自动轮播；用户一旦手动操作即停止自动。
+      const demo = document.getElementById("demo");
+      if (demo) {
+        const tabs = Array.from(
+          demo.querySelectorAll<HTMLButtonElement>("[role=tab]"),
+        );
+        const panels = Array.from(
+          demo.querySelectorAll<HTMLElement>("[role=tabpanel]"),
+        );
+        const reduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        let current = 0;
+        let timer: ReturnType<typeof setInterval> | null = null;
+
+        const show = (i: number) => {
+          current = (i + tabs.length) % tabs.length;
+          tabs.forEach((t, k) => {
+            const on = k === current;
+            t.classList.toggle("is-on", on);
+            t.setAttribute("aria-selected", String(on));
+            t.tabIndex = on ? 0 : -1;
+          });
+          panels.forEach((p, k) => {
+            const on = k === current;
+            // 先隐藏再显示，重新触发 CSS 进场动画
+            p.hidden = !on;
+            p.classList.remove("is-on");
+            if (on) {
+              void p.offsetWidth;
+              p.classList.add("is-on");
+            }
+          });
+        };
+
+        const stopAuto = () => {
+          if (timer) clearInterval(timer);
+          timer = null;
+          demo.classList.remove("is-auto");
+        };
+        const startAuto = () => {
+          if (reduced || timer) return;
+          demo.classList.add("is-auto");
+          timer = setInterval(() => show(current + 1), 4200);
+        };
+
+        tabs.forEach((t, k) => {
+          t.addEventListener("click", () => {
+            stopAuto();
+            show(k);
+          });
+          t.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+              e.preventDefault();
+              stopAuto();
+              show(current + (e.key === "ArrowRight" ? 1 : -1));
+              tabs[current]?.focus();
+            }
+          });
+        });
+
+        if (!reduced) {
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((en) =>
+                en.isIntersecting ? startAuto() : stopAuto(),
+              );
+            },
+            { threshold: 0.35 },
+          );
+          io.observe(demo);
+        }
+      }
+    </script>
+
+    <style>
+      /* ---------- 布局基础 ---------- */
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      section {
+        padding: 88px 0;
+      }
+      h2 {
+        font-size: clamp(1.7rem, 1.2rem + 2vw, 2.5rem);
+        letter-spacing: 0.02em;
+      }
+      .accent {
+        color: var(--sky);
+      }
+      .sec-lede {
+        margin-top: 14px;
+        max-width: 34em;
+        color: var(--ink-soft);
+      }
+
+      /* ---------- 顶栏 ---------- */
+      .site-head {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--paper) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .head-inner {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        min-height: 62px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .brand-name {
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.01em;
+      }
+      .brand-name em {
+        font-style: normal;
+        color: var(--sky);
+      }
+      .nav-fold {
+        margin-left: auto;
+      }
+      .nav-fold summary {
+        display: none;
+      }
+      .nav-fold nav {
+        display: flex;
+        gap: 26px;
+        align-items: center;
+      }
+      .nav-fold nav a {
+        color: var(--ink-soft);
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+      .nav-fold nav a:hover {
+        color: var(--sky-deep);
+      }
+      .nav-mail {
+        color: var(--sky-deep) !important;
+        font-weight: 600;
+      }
+      .phase-badge {
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        color: var(--sun);
+        background: var(--sun-wash);
+        border: 1px solid color-mix(in srgb, var(--sun-bright) 40%, transparent);
+        border-radius: 999px;
+        padding: 4px 12px;
+        white-space: nowrap;
+      }
+
+      /* ---------- 首屏 ---------- */
+      .hero {
+        padding: 96px 0 100px;
+        position: relative;
+        overflow: hidden;
+      }
+      /* 晴空底色：两团极淡的云影 */
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        pointer-events: none;
+      }
+      .hero::before {
+        width: 560px;
+        height: 560px;
+        right: -140px;
+        top: -220px;
+        background: color-mix(in srgb, var(--sky) 13%, transparent);
+      }
+      .hero::after {
+        width: 420px;
+        height: 420px;
+        left: -180px;
+        bottom: -260px;
+        background: color-mix(in srgb, var(--sun-bright) 10%, transparent);
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 10fr) minmax(0, 9fr);
+        gap: 56px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      .eyebrow {
+        font-size: 0.78rem;
+        letter-spacing: 0.32em;
+        color: var(--sky-deep);
+        margin-bottom: 18px;
+      }
+      h1 {
+        font-size: clamp(2.3rem, 1.4rem + 4vw, 3.9rem);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        line-height: 1.18;
+      }
+      .lede {
+        margin-top: 22px;
+        font-size: 1.06rem;
+        color: var(--ink-soft);
+        max-width: 30em;
+      }
+      .hero-cta {
+        margin-top: 34px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .btn {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 13px 26px;
+        font-size: 0.98rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .btn-primary {
+        background: var(--sky);
+        color: #fff;
+        box-shadow: 0 8px 22px -8px color-mix(in srgb, var(--sky) 55%, transparent);
+      }
+      .btn-primary:hover {
+        background: var(--sky-deep);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+      .btn-ghost {
+        color: var(--ink);
+        border: 1px solid var(--line);
+        background: var(--card);
+      }
+      .btn-ghost:hover {
+        border-color: var(--sky);
+        color: var(--sky-deep);
+      }
+      .hero-note {
+        margin-top: 22px;
+        font-size: 0.85rem;
+        color: var(--ink-faint);
+      }
+
+      /* ---------- 演示面板 ---------- */
+      .demo {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow:
+          0 1px 2px rgba(18, 42, 63, 0.05),
+          0 24px 48px -24px rgba(18, 42, 63, 0.25);
+        overflow: hidden;
+      }
+      .demo-chrome {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--line-soft);
+        background: var(--paper);
+      }
+      .demo-chrome .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--line);
+      }
+      .demo-url {
+        margin-left: 8px;
+        font-size: 0.72rem;
+        color: var(--ink-faint);
+        letter-spacing: 0.04em;
+      }
+      .demo-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .demo-tab {
+        appearance: none;
+        border: 0;
+        background: none;
+        font: inherit;
+        font-size: 0.86rem;
+        color: var(--ink-faint);
+        padding: 11px 4px;
+        cursor: pointer;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .demo-tab .step-no {
+        display: inline-grid;
+        place-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        font-size: 0.7rem;
+      }
+      .demo-tab.is-on {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .demo-tab.is-on .step-no {
+        background: var(--sky);
+        border-color: var(--sky);
+        color: #fff;
+      }
+      .demo-tab::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 0;
+        background: var(--sky);
+      }
+      .demo-tab.is-on::after {
+        width: 100%;
+      }
+      /* 自动轮播时，当前 tab 底线做进度填充 */
+      .is-auto .demo-tab.is-on::after {
+        animation: tabfill 4.2s linear forwards;
+      }
+      @keyframes tabfill {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .demo-panel {
+        padding: 22px 24px 24px;
+        min-height: 316px;
+      }
+      .panel-q {
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+      .demo-panel.is-on > * {
+        animation: rise 0.45s ease both;
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* 第 1 步 */
+      .pick-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+      .pick {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 12px 14px;
+        background: var(--card);
+      }
+      .pick-radio {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        flex: none;
+      }
+      .pick.is-picked {
+        border-color: var(--sky);
+        background: var(--sky-wash);
+      }
+      .pick.is-picked .pick-radio {
+        border-color: var(--sky);
+        background: radial-gradient(var(--sky) 0 45%, transparent 50%);
+      }
+      .pick-label {
+        display: grid;
+        line-height: 1.45;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .pick-label small {
+        color: var(--ink-faint);
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+      .panel-next {
+        margin-top: 16px;
+        text-align: right;
+      }
+      .faux-btn {
+        display: inline-block;
+        background: var(--sun-bright);
+        color: #fff;
+        border-radius: 999px;
+        padding: 8px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      /* 第 2 步 */
+      .prov-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+        font-size: 0.85rem;
+        color: var(--leaf);
+      }
+      .prov-list i {
+        font-style: normal;
+        color: var(--ink-faint);
+        margin-left: 10px;
+        font-size: 0.78rem;
+      }
+      .is-on .prov-list li {
+        animation: rise 0.4s ease both;
+        animation-delay: calc(var(--i) * 0.55s);
+      }
+      .prov-bar {
+        margin-top: 18px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--paper-2);
+        overflow: hidden;
+      }
+      .prov-bar span {
+        display: block;
+        height: 100%;
+        width: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--sky), var(--leaf-bright));
+      }
+      .is-on .prov-bar span {
+        animation: fill 2.6s ease-out both;
+      }
+      @keyframes fill {
+        from {
+          width: 4%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      .prov-done {
+        margin-top: 14px;
+        font-size: 0.85rem;
+        color: var(--leaf);
+        font-weight: 600;
+      }
+      .is-on .prov-done {
+        animation: rise 0.4s ease both;
+        animation-delay: 2.5s;
+      }
+
+      /* 第 3 步 */
+      .health-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .health-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--leaf-bright);
+        box-shadow: 0 0 0 5px var(--leaf-wash);
+      }
+      .health-word {
+        font-weight: 700;
+        font-size: 1.05rem;
+      }
+      .health-days {
+        margin-left: auto;
+        font-size: 0.72rem;
+        color: var(--ink-faint);
+      }
+      .uptime {
+        display: flex;
+        gap: 3px;
+        margin: 16px 0 18px;
+      }
+      .uptime i {
+        flex: 1;
+        height: 26px;
+        border-radius: 3px;
+        background: var(--leaf-bright);
+        opacity: 0.85;
+      }
+      .health-rows {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 9px;
+        font-size: 0.9rem;
+      }
+      .health-rows li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px dashed var(--line-soft);
+        padding-bottom: 8px;
+      }
+      .health-rows span {
+        color: var(--ink-soft);
+      }
+      .health-rows .ok {
+        color: var(--leaf);
+        font-weight: 600;
+      }
+      .health-note {
+        margin-top: 14px;
+        font-size: 0.82rem;
+        color: var(--ink-faint);
+      }
+      .demo-caption {
+        margin-top: 14px;
+        font-size: 0.82rem;
+        color: var(--ink-faint);
+        text-align: center;
+      }
+
+      /* ---------- 三步 ---------- */
+      .how {
+        background: var(--card);
+        border-block: 1px solid var(--line-soft);
+      }
+      .steps {
+        list-style: none;
+        margin: 44px 0 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+      .steps li {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 26px 24px 28px;
+        background: var(--paper);
+        position: relative;
+      }
+      .step-big {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        color: var(--sky);
+        background: var(--sky-wash);
+        border-radius: 999px;
+        padding: 4px 12px;
+        display: inline-block;
+      }
+      .steps h3 {
+        margin: 16px 0 10px;
+        font-size: 1.2rem;
+      }
+      .steps p {
+        color: var(--ink-soft);
+        font-size: 0.95rem;
+      }
+      .how-note {
+        margin-top: 36px;
+        text-align: center;
+        color: var(--ink-soft);
+        font-size: 0.98rem;
+      }
+
+      /* ---------- 场景 ---------- */
+      .scene-grid {
+        margin-top: 44px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .scene {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 24px 24px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          border-color 0.18s ease;
+      }
+      .scene:hover {
+        transform: translateY(-3px);
+        border-color: color-mix(in srgb, var(--sky) 45%, var(--line));
+        box-shadow: 0 18px 36px -22px rgba(18, 42, 63, 0.28);
+      }
+      .scene-say {
+        font-weight: 700;
+        font-size: 1.08rem;
+        color: var(--sky-deep);
+      }
+      .scene h3 {
+        font-size: 0.82rem;
+        letter-spacing: 0.14em;
+        color: var(--ink-faint);
+        font-weight: 600;
+        order: -1;
+      }
+      .scene p {
+        color: var(--ink-soft);
+        font-size: 0.94rem;
+      }
+      .scene-plus {
+        margin-top: auto;
+        font-size: 0.76rem;
+        color: var(--sun);
+        background: var(--sun-wash);
+        border-radius: 8px;
+        padding: 6px 10px;
+      }
+      .scene-ask {
+        background: linear-gradient(160deg, var(--sky-wash), var(--card) 70%);
+        border-style: dashed;
+      }
+
+      /* ---------- 保障 ---------- */
+      .trust {
+        background: var(--ink);
+        color: #eaf1f8;
+      }
+      .trust h2 {
+        color: #fff;
+      }
+      .trust .sec-lede {
+        color: #b8c9d9;
+      }
+      .trust-grid {
+        margin-top: 44px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 22px;
+      }
+      .trust-grid article {
+        border: 1px solid rgba(234, 241, 248, 0.16);
+        border-radius: var(--radius-lg);
+        padding: 22px 20px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .trust-grid h3 {
+        color: #fff;
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+      }
+      .trust-grid h3 sup {
+        color: var(--sun-bright);
+      }
+      .trust-grid p {
+        color: #b8c9d9;
+        font-size: 0.9rem;
+      }
+      .trust-fine {
+        margin-top: 20px;
+        font-size: 0.82rem;
+        color: #93a9bd;
+        max-width: 46em;
+      }
+      .versus {
+        margin-top: 60px;
+      }
+      .versus-title {
+        font-size: 1.25rem;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+      .versus-table {
+        border: 1px solid rgba(234, 241, 248, 0.16);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        font-size: 0.92rem;
+      }
+      .vs-row {
+        display: grid;
+        grid-template-columns: 130px 1fr 1fr;
+        gap: 14px;
+        padding: 13px 18px;
+        border-top: 1px solid rgba(234, 241, 248, 0.1);
+        align-items: baseline;
+      }
+      .vs-row:first-child {
+        border-top: 0;
+      }
+      .vs-head {
+        background: rgba(255, 255, 255, 0.04);
+        font-weight: 600;
+        color: #d7e3ee;
+      }
+      .vs-row [role="rowheader"] {
+        color: #93a9bd;
+        font-size: 0.84rem;
+      }
+      .vs-row [role="cell"] {
+        color: #b8c9d9;
+      }
+      .vs-us {
+        color: #8fd6ae !important;
+        font-weight: 500;
+      }
+      .vs-head .vs-us {
+        color: #8fd6ae !important;
+      }
+
+      /* ---------- 价格 ---------- */
+      .price-rules {
+        list-style: none;
+        margin: 36px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 16px;
+        max-width: 44em;
+      }
+      .price-rules li {
+        border-left: 3px solid var(--sky);
+        padding: 4px 0 4px 18px;
+        color: var(--ink-soft);
+      }
+      .price-rules b {
+        color: var(--ink);
+      }
+      .price-honest {
+        margin-top: 34px;
+        max-width: 44em;
+        background: var(--sun-wash);
+        border: 1px solid color-mix(in srgb, var(--sun-bright) 35%, transparent);
+        border-radius: var(--radius);
+        padding: 16px 20px;
+        color: var(--sun);
+        font-size: 0.95rem;
+      }
+
+      /* ---------- 现状 ---------- */
+      .now {
+        background: var(--card);
+        border-top: 1px solid var(--line-soft);
+      }
+      .timeline {
+        list-style: none;
+        margin: 40px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 26px;
+        max-width: 46em;
+      }
+      .timeline li {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      .tl-mark {
+        flex: none;
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        font-size: 0.9rem;
+      }
+      .done .tl-mark {
+        background: var(--leaf-wash);
+        color: var(--leaf);
+      }
+      .doing .tl-mark {
+        background: var(--sky-wash);
+        color: var(--sky);
+      }
+      .todo .tl-mark {
+        background: var(--paper-2);
+        color: var(--ink-faint);
+      }
+      .timeline h3 {
+        font-size: 1.05rem;
+      }
+      .tl-date {
+        font-size: 0.72rem;
+        color: var(--ink-faint);
+        font-weight: 400;
+        margin-left: 8px;
+      }
+      .timeline p {
+        color: var(--ink-soft);
+        font-size: 0.94rem;
+        margin-top: 6px;
+      }
+
+      /* ---------- 页脚 ---------- */
+      .site-foot {
+        border-top: 1px solid var(--line-soft);
+        padding: 56px 0 36px;
+      }
+      .foot-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .foot-brand .brand-name {
+        font-size: 1.15rem;
+      }
+      .foot-line {
+        color: var(--ink-soft);
+        margin-top: 8px;
+      }
+      .foot-mail {
+        margin-top: 10px;
+        font-size: 0.85rem;
+      }
+      .foot-eco {
+        display: grid;
+        gap: 8px;
+        align-content: start;
+      }
+      .foot-eco h3 {
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        color: var(--ink-faint);
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .foot-eco a {
+        color: var(--ink-soft);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+      .foot-eco a:hover {
+        color: var(--sky-deep);
+      }
+      .foot-base {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line-soft);
+      }
+      .foot-base p {
+        font-size: 0.75rem;
+        color: var(--ink-faint);
+        letter-spacing: 0.04em;
+      }
+
+      /* ---------- 响应式 ---------- */
+      @media (max-width: 960px) {
+        section {
+          padding: 64px 0;
+        }
+        .hero {
+          padding: 56px 0 64px;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 44px;
+        }
+        .steps,
+        .scene-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .trust-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .wide-only {
+          display: none;
+        }
+      }
+      @media (max-width: 640px) {
+        body {
+          font-size: 16px;
+        }
+        .steps,
+        .scene-grid,
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+        .vs-row {
+          grid-template-columns: 86px 1fr 1fr;
+          font-size: 0.8rem;
+          gap: 10px;
+          padding: 11px 12px;
+        }
+        .phase-badge {
+          display: none;
+        }
+        .head-inner {
+          gap: 12px;
+        }
+        /* 移动端导航折叠 */
+        .nav-fold summary {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          list-style: none;
+          cursor: pointer;
+          font-size: 0.9rem;
+          color: var(--ink-soft);
+          padding: 6px 2px;
+        }
+        .nav-fold summary::-webkit-details-marker {
+          display: none;
+        }
+        .nav-burger {
+          width: 16px;
+          height: 2px;
+          background: var(--ink);
+          position: relative;
+          display: inline-block;
+        }
+        .nav-burger::before,
+        .nav-burger::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 16px;
+          height: 2px;
+          background: var(--ink);
+        }
+        .nav-burger::before {
+          top: -5px;
+        }
+        .nav-burger::after {
+          top: 5px;
+        }
+        .nav-fold {
+          position: relative;
+        }
+        .nav-fold[open] nav {
+          position: absolute;
+          right: 0;
+          top: calc(100% + 10px);
+          background: var(--card);
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          box-shadow: 0 18px 40px -18px rgba(18, 42, 63, 0.3);
+          display: grid;
+          gap: 4px;
+          padding: 10px;
+          min-width: 190px;
+        }
+        .nav-fold[open] nav a {
+          padding: 8px 12px;
+          border-radius: 8px;
+        }
+        .nav-fold[open] nav a:hover {
+          background: var(--paper-2);
+        }
+        .demo-panel {
+          min-height: 340px;
+        }
+      }
+    </style>
+  </body>
+</html>

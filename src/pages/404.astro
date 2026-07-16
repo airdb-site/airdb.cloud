@@ -1,0 +1,101 @@
+---
+import "../styles/global.css";
+
+const SITE = "https://airdb.cloud";
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 · 这朵云飘走了 — AirDB Cloud</title>
+    <meta name="description" content="页面不存在。这朵云飘走了，回首页看看吧。" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`${SITE}/404`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#f7f9fb" />
+  </head>
+  <body>
+    <main class="lost">
+      <svg class="lost-cloud" viewBox="0 0 64 64" width="88" height="88" aria-hidden="true">
+        <path
+          d="M20 44a9 9 0 0 1-1.2-17.92A13 13 0 0 1 44 22.5 10.5 10.5 0 0 1 45 44Z"
+          fill="var(--sky)"></path>
+        <circle cx="45" cy="44" r="7" fill="var(--paper)"></circle>
+        <circle cx="45" cy="44" r="4.5" fill="#c2513c"></circle>
+      </svg>
+      <p class="code mono">404</p>
+      <h1>这朵云飘走了</h1>
+      <p class="lost-line">
+        你找的页面不在这里——可能地址打错了，也可能它还没被造出来。
+      </p>
+      <p class="lost-cta">
+        <a class="btn-home" href="/">回首页</a>
+        <a class="mail mono" href="mailto:info@airdb.com">info@airdb.com</a>
+      </p>
+    </main>
+
+    <style>
+      .lost {
+        min-height: 100svh;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        text-align: center;
+        padding: 24px;
+        gap: 6px;
+      }
+      .lost-cloud {
+        animation: drift 6s ease-in-out infinite alternate;
+      }
+      @keyframes drift {
+        from {
+          transform: translateX(-14px);
+        }
+        to {
+          transform: translateX(14px);
+        }
+      }
+      .code {
+        font-size: 0.9rem;
+        letter-spacing: 0.5em;
+        color: var(--ink-faint);
+        margin-top: 18px;
+      }
+      h1 {
+        font-size: clamp(1.8rem, 1.2rem + 3vw, 2.6rem);
+        font-weight: 800;
+      }
+      .lost-line {
+        color: var(--ink-soft);
+        max-width: 28em;
+        margin-top: 10px;
+      }
+      .lost-cta {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .btn-home {
+        display: inline-block;
+        background: var(--sky);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 12px 28px;
+        font-weight: 600;
+      }
+      .btn-home:hover {
+        background: var(--sky-deep);
+        color: #fff;
+      }
+      .mail {
+        font-size: 0.85rem;
+      }
+    </style>
+  </body>
+</html>
