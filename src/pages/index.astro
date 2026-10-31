@@ -203,26 +203,26 @@ const jsonLd = JSON.stringify({
               >
                 <p class="panel-q">今天要办什么事？</p>
                 <ul class="pick-list">
-                  <li class="pick is-picked">
+                  <li><button type="button" class="pick is-picked" aria-pressed="true">
                     <span class="pick-radio" aria-hidden="true"></span>
                     <span class="pick-label"
                       >我要一个官网<small>域名、证书、加速全包</small></span
                     >
-                  </li>
-                  <li class="pick">
+                  </button></li>
+                  <li><button type="button" class="pick" aria-pressed="false">
                     <span class="pick-radio" aria-hidden="true"></span>
                     <span class="pick-label"
                       >我要一个数据库<small>自动备份，会提前预警</small></span
                     >
-                  </li>
-                  <li class="pick">
+                  </button></li>
+                  <li><button type="button" class="pick" aria-pressed="false">
                     <span class="pick-radio" aria-hidden="true"></span>
                     <span class="pick-label"
                       >我要存文件和图片<small>传上来就能加速分发</small></span
                     >
-                  </li>
+                  </button></li>
                 </ul>
-                <p class="panel-next"><span class="faux-btn">开通 →</span></p>
+                <p class="panel-next"><button type="button" class="faux-btn" data-demo-next>演示开通 →</button></p>
               </div>
 
               <!-- 第 2 步：一键开通 -->
@@ -233,7 +233,7 @@ const jsonLd = JSON.stringify({
                 aria-labelledby="tab-2"
                 hidden
               >
-                <p class="panel-q">正在为你搭建「官网」…</p>
+                <p class="panel-q" data-provision-title>正在为你搭建「官网」…</p>
                 <ul class="prov-list mono">
                   <li style="--i: 0">✓ 云端资源已就绪<i>厂商与地域由系统决定</i></li>
                   <li style="--i: 1">✓ HTTPS 证书已配置<i>以后自动续期</i></li>
@@ -557,6 +557,7 @@ const jsonLd = JSON.stringify({
           "(prefers-reduced-motion: reduce)",
         ).matches;
         let current = 0;
+        let manual = false;
         let timer: ReturnType<typeof setInterval> | null = null;
 
         const show = (i: number) => {
@@ -585,19 +586,21 @@ const jsonLd = JSON.stringify({
           demo.classList.remove("is-auto");
         };
         const startAuto = () => {
-          if (reduced || timer) return;
+          if (reduced || timer || manual) return;
           demo.classList.add("is-auto");
           timer = setInterval(() => show(current + 1), 4200);
         };
 
         tabs.forEach((t, k) => {
           t.addEventListener("click", () => {
+            manual = true;
             stopAuto();
             show(k);
           });
           t.addEventListener("keydown", (e) => {
             if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
               e.preventDefault();
+              manual = true;
               stopAuto();
               show(current + (e.key === "ArrowRight" ? 1 : -1));
               tabs[current]?.focus();
@@ -605,6 +608,23 @@ const jsonLd = JSON.stringify({
           });
         });
 
+        const picks = Array.from(demo.querySelectorAll<HTMLButtonElement>('.pick'));
+        picks.forEach((pick, index) => pick.addEventListener('click', () => {
+          manual = true;
+          stopAuto();
+          picks.forEach((item) => {
+            item.classList.toggle('is-picked', item === pick);
+            item.setAttribute('aria-pressed', String(item === pick));
+          });
+          const title = demo.querySelector('[data-provision-title]');
+          if (title) title.textContent = `正在为你搭建「${['官网', '数据库', '文件存储'][index]}」…`;
+        }));
+        demo.querySelector('[data-demo-next]')?.addEventListener('click', () => {
+          manual = true;
+          stopAuto();
+          show(1);
+          tabs[1]?.focus();
+        });
         if (!reduced) {
           const io = new IntersectionObserver(
             (entries) => {
@@ -620,6 +640,9 @@ const jsonLd = JSON.stringify({
     </script>
 
     <style>
+      button.pick { width: 100%; text-align: left; background: transparent; font: inherit; cursor: pointer; }
+      button.faux-btn { border: 0; cursor: pointer; font: inherit; }
+
       /* ---------- 布局基础 ---------- */
       .wrap {
         max-width: 1120px;

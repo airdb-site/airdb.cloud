@@ -49,6 +49,7 @@ const SITE = "https://airdb.cloud";
       .lost-cloud {
         animation: drift 6s ease-in-out infinite alternate;
       }
+      @media (prefers-reduced-motion: reduce) { .lost-cloud { animation: none; } }
       @keyframes drift {
         from {
           transform: translateX(-14px);
