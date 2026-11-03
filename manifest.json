@@ -1,0 +1,16 @@
+{
+  "name": "AirDB Cloud",
+  "short_name": "AirDB Cloud",
+  "description": "AirDB Cloud（airdb.cloud）— 面向普通用户的云服务：选场景、一键开通、看健康度，不用懂云。",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "#f7f9fb",
+  "background_color": "#f7f9fb",
+  "display": "standalone"
+}

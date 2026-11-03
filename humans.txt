@@ -1,0 +1,16 @@
+/* TEAM */
+Founder: 阿正_Dean
+Handle: root@airdb
+Role: Founder
+
+/* COMPANY */
+Name: AirDB Cloud
+Mission: 把云厂商的底层能力封装成开箱即用的产品，让不懂技术的人也能用好云。
+Principle: 卖的是"这件事办成了"，不是一堆需要自己拼装的组件。
+
+/* SITE */
+Language: 中文
+Stack: Astro, TypeScript
+Fonts: Bricolage Grotesque + IBM Plex Mono (self-hosted), system CJK sans
+Standards: HTML5, CSS3, 只承诺已验证的事
+Contact: info@airdb.com
